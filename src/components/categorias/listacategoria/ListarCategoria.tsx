@@ -33,7 +33,7 @@ function ListaCategoria() {
 
             setIsLoading(true)
 
-            await buscar('/categoria', setCategoria, {
+            await buscar('/categorias', setCategoria, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
