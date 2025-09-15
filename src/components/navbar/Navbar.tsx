@@ -10,6 +10,15 @@ function Navbar() {
 				<li>
 					<Link to="/home">Home</Link>
 				</li>
+
+				<li>
+					<Link to="/produtos">Produtos</Link>
+				</li>
+
+				<li>
+					<Link to="/categorias">Categorias</Link>
+				</li>
+
 			</ul>
 		</nav>
 	)
