@@ -1,6 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// FIXME: Melhorar a persistência dos dados para usar backend futuramente
+// FIXME: Melhorar a persistênciados dados para usar backend futuramente
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
@@ -269,7 +268,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [users, setUsers] = useState<User[]>(mockUsers);
   const [categories, setCategories] = useState<Category[]>(mockCategories);
   const [products, setProducts] = useState<Product[]>(mockProducts);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   // Carrega dados do localStorage ao montar o componente.
   // Isso garante que, ao recarregar a página, os dados persistam e o usuário não perca informações já cadastradas.

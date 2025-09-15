@@ -1,19 +1,21 @@
-//import { Link } from 'react-router-dom';
-import type Usuario from '../../../models/Usuario';
+import React from 'react';
 
-interface CardUsuarioProps {
-    usuario: Usuario
+interface UsuarioProps {
+  id: string;
+  name: string;
+  email: string;
+  birthDate?: string;
+  role: 'admin' | 'user';
 }
 
-function CardUsuario({ usuario }: CardUsuarioProps) {
-    return (
-        <div>
-            <div>
-                f;
+const CardUsuario: React.FC<UsuarioProps> = ({ id, name, email, birthDate, role }) => (
+  <div>
+    <h3>{name}</h3>
+    <p>Email: {email}</p>
+    {birthDate && <p>Nascimento: {birthDate}</p>}
+    <p>Tipo: {role}</p>
+    <small>ID: {id}</small>
+  </div>
+);
 
-            </div>
-        </div>
-    )
-}
-
-export default CardUsuario
+export default CardUsuario;
