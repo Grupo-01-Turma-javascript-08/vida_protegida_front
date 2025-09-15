@@ -9,7 +9,7 @@ export default interface Produto {
     criadoEm: Date;
     atualizadoEm: Date;
     categoria?: Categoria[];
-    usuario?: Usuario[];
+    usuario?: Usuario;
 }
 
 
