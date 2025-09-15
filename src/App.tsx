@@ -10,7 +10,7 @@ function App() {
 			<Navbar />
 			<div className="min-h-[80vh]">
 				<Routes>
-					<Route path="/home" element={<HomePage />} />
+					<Route path="/" element={<HomePage />} />
 					<Route path="/sobre" element={<SobrePage />} />
 				</Routes>
 			</div>
