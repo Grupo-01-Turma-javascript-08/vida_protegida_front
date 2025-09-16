@@ -1,12 +1,9 @@
 import React from 'react';
 import {
-  Github,
-  Linkedin,
-  Facebook,
-  Instagram,
-  Twitter,
-  Mail
+  Mail,
+
 } from 'lucide-react';
+import { XLogoIcon, RedditLogoIcon, FacebookLogoIcon, InstagramLogoIcon, LinkedinLogoIcon, GithubLogoIcon } from "@phosphor-icons/react"
 
 function Footer() {
   return (
@@ -14,8 +11,8 @@ function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
 
         <div>
-          <h4 className="font-semibold text-[#38bdf8] mb-2">Carreiras</h4>
-          <a href="#" className="hover:underline block">Trabalhe com a gente</a>
+          <h4 className="font-semibold text-[#38bdf8] mb-2">Telefone</h4>
+          <a href="#" className="hover:underline block">0800 123 4567</a>
         </div>
 
         <div>
@@ -32,16 +29,16 @@ function Footer() {
           <h4 className="font-semibold text-[#38bdf8] mb-2">Redes Sociais</h4>
           <div className="flex gap-4 mt-2">
             <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-              <Linkedin className="h-5 w-5" />
+              <LinkedinLogoIcon className="h-5 w-5" />
             </a>
             <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-              <Facebook className="h-5 w-5" />
+              <FacebookLogoIcon className="h-5 w-5" />
             </a>
             <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-              <Instagram className="h-5 w-5" />
+              <InstagramLogoIcon className="h-5 w-5" />
             </a>
             <a href="#" className="hover:text-[#0ea5e9] transition-colors">
-              <Twitter className="h-5 w-5" />
+              <XLogoIcon className="h-5 w-5" />
             </a>
             <a
               href="https://github.com/Grupo-01-Turma-javascript-08/vida_protegida_front"
@@ -49,8 +46,17 @@ function Footer() {
               rel="noopener noreferrer"
               className="hover:text-[#0ea5e9] transition-colors"
             >
-              <Github className="h-5 w-5" />
+              <GithubLogoIcon className="h-5 w-5" />
             </a>
+
+          <a
+            href="https://www.reddit.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#0ea5e9] transition-colors"
+          >
+          <RedditLogoIcon className="h-5 w-5" />
+          </a>
           </div>
         </div>
 

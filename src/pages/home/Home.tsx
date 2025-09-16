@@ -1,7 +1,10 @@
 import React from 'react';
 import { Shield, Heart, Users, TrendingUp, Star, Award } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const HomePage: React.FC = () => {
+    const navigate = useNavigate();
+
     const features = [
         {
             icon: Shield,
@@ -49,7 +52,9 @@ export const HomePage: React.FC = () => {
             <div className="bg-white rounded-xl p-8 md:p-12 text-center shadow-md relative overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center opacity-30 backdrop-blur-xs"
-                    style={{ backgroundImage: 'url("https://www.theva.com.br/img/blog/grande/family-running-through-beach-1583517192.jpg")' }}
+                    style={{
+                        backgroundImage: 'url("https://www.theva.com.br/img/blog/grande/family-running-through-beach-1583517192.jpg")'
+                    }}
                 ></div>
 
                 <div className="relative z-10">
@@ -61,11 +66,18 @@ export const HomePage: React.FC = () => {
                         O seguro de vida que oferece tranquilidade e segurança financeira para você e sua família.
                         Planos flexíveis, coberturas amplas e o melhor atendimento do mercado.
                     </p>
+
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-[#38bdf8] hover:bg-[#0ea5e9] text-white font-semibold px-8 py-3 rounded-full transition-colors">
+                        <button
+                            onClick={() => navigate('/cadastro')}
+                            className="cursor-pointer bg-[#38bdf8] hover:bg-[#0ea5e9] text-white font-semibold px-8 py-3 rounded-full transition-colors"
+                        >
                             Começar Agora
                         </button>
-                        <button className="border border-[#38bdf8] text-[#38bdf8] hover:bg-[#38bdf8] hover:text-white font-semibold px-8 py-3 rounded-full transition-colors">
+                        <button
+                            onClick={() => navigate('/login')}
+                            className="cursor-pointer border border-[#38bdf8] text-[#38bdf8] hover:bg-[#38bdf8] hover:text-white font-semibold px-8 py-3 rounded-full transition-colors"
+                        >
                             Fazer Login
                         </button>
                     </div>
@@ -88,8 +100,10 @@ export const HomePage: React.FC = () => {
                 })}
             </div>
 
-            <div className="bg-white rounded-lg p-8 shadow-sm">
-                <h2 className="text-xl md:text-2xl font-bold text-center text-[#334155] mb-8">Números que Inspiram Confiança</h2>
+           <div className="bg-white rounded-lg p-8 shadow-sm">
+                <h2 className="text-xl md:text-2xl font-bold text-center text-[#334155] mb-8">
+                    Números que Inspiram Confiança
+                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
                     <div>
                         <div className="text-[#38bdf8] text-4xl font-extrabold mb-1">+50.000</div>
@@ -107,7 +121,9 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-sm">
-                <h2 className="text-xl md:text-2xl font-bold text-center text-[#334155] mb-8">O que nossos clientes dizem</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-center text-[#334155] mb-8">
+                    O que nossos clientes dizem
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {testimonials.map((testimonial, index) => (
                         <div key={index} className="p-6">
@@ -130,6 +146,7 @@ export const HomePage: React.FC = () => {
                     Junte-se a milhares de famílias que já escolheram a segurança da VidaProtegida.
                 </p>
                 <button
+                    onClick={() => navigate('/cadastro')}
                     className="bg-white text-[#38bdf8] hover:bg-gray-100 font-semibold px-8 py-3 rounded-full"
                 >
                     Começar Agora
@@ -140,3 +157,4 @@ export const HomePage: React.FC = () => {
         
     );
 };
+export default HomePage;
