@@ -6,7 +6,7 @@ import { HomePage } from "./pages/home/Home";
 import { SobrePage } from "./pages/sobre/Sobre";
 import Cadastro from "./pages/cadastro/Cadastro";
 import Categorias from "./pages/categorias/Categorias";
-import ListaUsuario from "./components/usuario/listausuario/ListaUsuario";
+import UsersPage from "./pages/usuarios/Usuarios";
 import { AuthProvider } from "./contexts/AuthContext";
 import DeletarProduto from "./components/produtos/deletaproduto/DeletarProduto";
 import FormProduto from "./components/produtos/formproduto/FormProduto";
@@ -36,7 +36,7 @@ function App() {
 						<Route path="/editarproduto/:id" element={<FormProduto />} />
 						<Route path="/deletarproduto/:id" element={<DeletarProduto />} />
 						<Route path="/categorias" element={<Categorias />} />
-						<Route path="/usuarios" element={<ListaUsuario />} />
+						<Route path="/usuarios" element={<UsersPage />} />
 						<Route path="/produtos" element={<ProdutosPage />} />
 					</Routes>
 				</div>
