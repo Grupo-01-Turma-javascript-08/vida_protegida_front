@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import FormUsuario from '../../components/usuario/formusuario/FormUsuario';
+import DeletarUsuario from '../../components/usuario/deletausuario/DeletarUsuario';
 
 // Exemplo de dados (substitua pelo seu backend ou contexto)
 const usuarios = [
@@ -33,8 +35,11 @@ const UsersPage: React.FC = () => {
   const [busca, setBusca] = useState('');
   const [filtroFuncao, setFiltroFuncao] = useState('Todas');
   const [filtroStatus, setFiltroStatus] = useState('Todos');
+  const [showForm, setShowForm] = useState<{ open: boolean; usuario?: any }>({ open: false });
+  const [showDelete, setShowDelete] = useState<{ open: boolean; usuario?: any }>({ open: false });
+  const [usuariosState, setUsuariosState] = useState(usuarios);
 
-  const usuariosFiltrados = usuarios.filter(u => {
+  const usuariosFiltrados = usuariosState.filter(u => {
     const buscaValida =
       u.nome.toLowerCase().includes(busca.toLowerCase()) ||
       u.email.toLowerCase().includes(busca.toLowerCase());
@@ -61,7 +66,7 @@ const UsersPage: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             gap: 8
-          }}>
+          }} onClick={() => setShowForm({ open: true })}>
             <span role="img" aria-label="user">👤</span> Novo Usuário
           </button>
         </div>
@@ -231,7 +236,7 @@ const UsersPage: React.FC = () => {
               padding: '8px 12px',
               cursor: 'pointer',
               fontSize: 20
-            }}>
+            }} onClick={() => setShowForm({ open: true, usuario: u })}>
               ✏️
             </button>
             <button style={{
@@ -242,7 +247,7 @@ const UsersPage: React.FC = () => {
               padding: '8px 12px',
               cursor: 'pointer',
               fontSize: 20
-            }}>
+            }} onClick={() => setShowDelete({ open: true, usuario: u })}>
               🗑️
             </button>
             <button style={{
@@ -259,6 +264,34 @@ const UsersPage: React.FC = () => {
           </div>
         </div>
       ))}
+      {/* Modal de Formulário de Usuário */}
+      {showForm.open && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: '#0005', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
+          <div style={{ background: '#fff', borderRadius: 16, padding: 32, minWidth: 400 }}>
+            <FormUsuario usuario={showForm.usuario} onClose={() => setShowForm({ open: false })} onSave={novoUsuario => {
+              if (showForm.usuario) {
+                // Editar
+                setUsuariosState(us => us.map(u => u.id === novoUsuario.id ? novoUsuario : u));
+              } else {
+                // Adicionar
+                setUsuariosState(us => [...us, { ...novoUsuario, id: Date.now() }]);
+              }
+              setShowForm({ open: false });
+            }} />
+          </div>
+        </div>
+      )}
+      {/* Modal de Exclusão de Usuário */}
+      {showDelete.open && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: '#0005', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
+          <div style={{ background: '#fff', borderRadius: 16, padding: 32, minWidth: 400 }}>
+            <DeletarUsuario usuario={showDelete.usuario} onClose={() => setShowDelete({ open: false })} onDelete={() => {
+              setUsuariosState(us => us.filter(u => u.id !== showDelete.usuario.id));
+              setShowDelete({ open: false });
+            }} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
