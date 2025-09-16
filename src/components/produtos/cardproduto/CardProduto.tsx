@@ -1,60 +1,62 @@
-
-//import { Link } from 'react-router-dom';
-import type Produto from '../../../models/Produto';
+import { Link } from "react-router-dom";
+import type Produto from "../../../models/Produto";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../../contexts/AuthContextOnly";
+import { useContext } from "react";
 
 interface CardProdutoProps {
-    produto: Produto
+  produto: Produto;
 }
 
-function CardProduto({ produto }: CardProdutoProps) {
-    return (
-        <div>
-            <div>
-                f;
+export default function CardProduto({ produto }: CardProdutoProps) {
+    const { usuario } = useContext(AuthContext);
+ 
 
-            </div>
+  return (
+    <div className="border border-[#CBD5E1] flex flex-col rounded-2xl overflow-hidden shadow-md bg-[#fff] transition hover:shadow-lg p-5">
+      <h2 className="text-2xl font-bold text-[#334155] mb-2">{produto.nome}</h2>
+
+      <p className="text-[#475569] text-sm leading-relaxed">
+        {produto.descricao}
+      </p>
+
+      <p className="text-lg font-extrabold text-[#1E3A8A] mt-4">
+        R$ {produto.preco.toFixed(2)}
+      </p>
+
+      <p className="text-xs text-[#64748B] mt-1">
+        Categoria: {produto.categoria?.nome || "Não informado"}
+      </p>
+
+      <button
+        onClick={() => {
+          toast.info("Contação Enviada!");
+        }}
+        className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 
+                   bg-[#334155] text-white rounded-xl font-medium cursor-pointer
+                   hover:bg-[#1E293B] transition"
+      >
+        Solicitar Cotação
+      </button>
+
+      {usuario?.tipo == "admin" && (
+        <div className="flex gap-2 mt-4">
+          <Link
+            to={`/editarproduto/${produto.id}`}
+            className="flex-1 bg-[#3B82F6] hover:bg-[#2563EB] 
+                       text-white rounded-xl py-2 text-center transition"
+          >
+            Editar
+          </Link>
+          <Link
+            to={`/deletarproduto/${produto.id}`}
+            className="flex-1 bg-red-500 hover:bg-red-600 
+                       text-white rounded-xl py-2 text-center transition"
+          >
+            Deletar
+          </Link>
         </div>
-    )
-    // return (
-    //     <div className='border-slate-900 border 
-    //         flex flex-col rounded overflow-hidden justify-between'>
-                
-    //         <div>
-    //             <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
-    //                 <img
-    //                     src={produto.usuario?.foto}
-    //                     className='h-12 rounded-full'
-    //                     alt={produto.usuario?.nome} />
-    //                 <h3 className='text-lg font-bold text-center uppercase'>
-    //                     {produto.usuario?.nome}
-    //                 </h3>
-    //             </div>
-    //             <div className='p-4 '>
-    //                 <h4 className='text-lg font-semibold uppercase'>{produto.nome}</h4>
-    //                 <p>{produto.descricao}</p>
-    //                 <p>Descrição: {produto.descricao}</p>
-    //                 <p>Data: {new Intl.DateTimeFormat("pt-BR", {
-    //                     dateStyle: 'full',
-    //                     timeStyle: 'medium',
-    //                 }).format(new Date(produto.criadoEm))}</p>
-    //             </div>
-    //         </div>
-    //         <div className="flex">
-    //             <Link to={`/editarproduto/${produto.id}`} 
-    //                 className='w-full text-white bg-indigo-400 
-    //                 hover:bg-indigo-800 flex items-center justify-center py-2'>
-    //                 <button>Editar</button>
-    //             </Link>
-    //             <Link to={`/deletarproduto/${produto.id}`} 
-    //                 className='text-white bg-red-400 
-    //                 hover:bg-red-700 w-full flex items-center justify-center'>
-    //                 <button>Deletar</button>
-    //             </Link>
-    //         </div>
-    //     </div>
-    // )
+      )}
+    </div>
+  );
 }
-
-export default CardProduto
-
-                  
