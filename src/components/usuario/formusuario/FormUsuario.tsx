@@ -1,70 +1,65 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
-import { useNavigate, useParams } from "react-router-dom"
-import type Usuario from "../../../models/Usuario";
-import { atualizar, buscar, cadastrar } from "../../../sevices/Service";
-import { toast } from "react-toastify";
 
+import React, { useState } from 'react';
 
-function FormUsuario() {
-    const navigate = useNavigate();
-    const [usuario, setUsuario] = useState<Usuario>({} as Usuario);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { id } = useParams<{ id: string }>();
-
-    async function buscarPorId(id: string) {
-        try {
-            await buscar(`/usuarios/${id}`, setUsuario);
-        } catch (error: any) {
-            toast.error("Erro ao carregar usuário.");
-        }
-    }
-
-    useEffect(() => {
-        if (id !== undefined) {
-            buscarPorId(id);
-        }
-    }, [id]);
-
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setUsuario({
-            ...usuario,
-            [e.target.name]: e.target.value,
-        });
-    }
-
-    async function gerarNovoUsuario(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        setIsLoading(true);
-
-        if (id !== undefined) {
-            try {
-                await atualizar(`/usuario`, usuario, setUsuario);
-                toast.success("Usuário atualizado com sucesso!");
-                navigate("/usuario");
-            } catch (error: any) {
-                console.log(error);
-                toast.error("Erro ao atualizar usuário: " + (error?.response?.data?.message || error.message || 'Erro desconhecido'));
-                console.error(error);
-            }
-        } else {
-            try {
-                await cadastrar(`/usuarios`, usuario, setUsuario);
-                toast.success("Usuário cadastrado com sucesso!");
-                navigate("/usuarios");
-            } catch (error) {
-                toast.error("Erro ao cadastrar usuário.");
-            }
-        }
-    }
-
-    setIsLoading(false)
-
+interface FormUsuarioProps {
+  onSubmit: (name: string, email: string, password: string, birthDate?: string) => void;
 }
-        
-    
-return (
-    <div>FormUsuario</div>
-)
 
+const FormUsuario: React.FC<FormUsuarioProps> = ({ onSubmit }) => {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+    birthDate: ''
+  });
 
-export default FormUsuario
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(form.name, form.email, form.password, form.birthDate);
+    setForm({ name: '', email: '', password: '', birthDate: '' });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        name="name"
+        type="text"
+        placeholder="Nome"
+        value={form.name}
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="email"
+        type="email"
+        placeholder="E-mail"
+        value={form.email}
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="password"
+        type="password"
+        placeholder="Senha"
+        value={form.password}
+        onChange={handleChange}
+        required
+      />
+      <input
+        name="birthDate"
+        type="date"
+        placeholder="Data de Nascimento"
+        value={form.birthDate}
+        onChange={handleChange}
+      />
+      <button type="submit">Salvar</button>
+    </form>
+  );
+};
+
+export default FormUsuario;
+
