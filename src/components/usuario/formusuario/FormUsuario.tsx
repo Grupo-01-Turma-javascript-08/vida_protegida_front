@@ -40,7 +40,7 @@ const FormUsuario: React.FC<FormUsuarioProps> = ({ onSubmit, onClose }) => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '0 auto' }}>
+  <div style={{ width: '100%', maxWidth: 400, minWidth: 280, margin: '0 auto', boxSizing: 'border-box', padding: '1rem', background: '#fff', borderRadius: 16, boxShadow: '0 2px 8px #0001' }}>
       <h2 style={{ marginBottom: 24, color: '#334155' }}>Novo Usuário</h2>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div>
