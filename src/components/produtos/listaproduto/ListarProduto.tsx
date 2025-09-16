@@ -6,6 +6,7 @@ import CardProduto from "../cardproduto/CardProduto";
 import type Produto from "../../../models/Produto";
 import { AuthContext } from "../../../contexts/AuthContextOnly";
 import { toast } from "react-toastify";
+import type Categoria from "../../../models/Categoria";
 
 function ListarProduto() {
   const navigate = useNavigate();
