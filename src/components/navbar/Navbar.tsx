@@ -9,10 +9,6 @@ function Navbar() {
         </Link>
 
         <div className="flex space-x-6 text-[#334155]">
-          <Link to="/cadastro" className="font-semibold hover:text-[#0ea5e9] transition-colors"
-          >
-            Cadastro
-          </Link>
           <Link
             to="/home"
             className="font-semibold hover:text-[#0ea5e9] transition-colors"
@@ -24,6 +20,18 @@ function Navbar() {
             className="font-semibold hover:text-[#0ea5e9] transition-colors"
           >
             Sobre
+          </Link>
+          <Link
+            to="/"
+            className="font-semibold hover:text-[#0ea5e9] transition-colors"
+          >
+            Cadastro
+          </Link>
+          <Link
+            to="/categorias"
+            className="font-semibold hover:text-[#0ea5e9] transition-colors"
+          >
+            Categorias
           </Link>
         </div>
       </div>
