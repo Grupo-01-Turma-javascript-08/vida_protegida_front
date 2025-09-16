@@ -5,6 +5,9 @@ import { HomePage } from "./pages/home/Home";
 import { SobrePage } from "./pages/sobre/Sobre";
 import Cadastro from "./pages/cadastro/Cadastro";
 import { AuthProvider } from "./contexts/AuthContext";
+import DeletarProduto from "./components/produtos/deletaproduto/DeletarProduto";
+import FormProduto from "./components/produtos/formproduto/FormProduto";
+import ListarProduto from "./components/produtos/listaproduto/ListarProduto";
 
 
 
@@ -18,7 +21,11 @@ function App() {
 						<Route path="/" element={<HomePage />} />
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/sobre" element={<SobrePage />} />
-						<Route path="/cadastro" element={<Cadastro setCurrentPage={() => {}} />} />
+						<Route path="/cadastro" element={<Cadastro setCurrentPage={() => { }} />} />
+						<Route path="/produtos" element={<ListarProduto />} />
+						<Route path="/cadastrarproduto" element={<FormProduto />} />
+						<Route path="/editarproduto/:id" element={<FormProduto />} />
+						<Route path="/deletarproduto/:id" element={<DeletarProduto />} />
 					</Routes>
 				</div>
 				<Footer />
