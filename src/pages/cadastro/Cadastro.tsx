@@ -225,7 +225,7 @@ export const Cadastro: React.FC<RegisterPageProps> = ({ setCurrentPage }) => {
             Já tem uma conta?{' '}
             <button 
               onClick={() => setCurrentPage('login')}
-              className="text-[#38bdf8] hover:underline"
+              className="cursor-pointer text-[#38bdf8] hover:underline"
             >
               Faça login
             </button>

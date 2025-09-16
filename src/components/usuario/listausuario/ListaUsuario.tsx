@@ -1,50 +1,82 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type Usuario from "../../../models/Usuario";
-import { buscar } from "../../../sevices/Service";
-
+import { AuthContext } from "../../../contexts/AuthContextOnly";
+import { toast } from "react-toastify";
+import { buscar } from "../../../services/Service";
 
 function ListaUsuario() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+  const auth = useContext(AuthContext);
 
-    const [usuario, setUsuario] = useState<Usuario[]>([])
+  if (!auth) {
+    throw new Error("AuthContext deve ser usado dentro de AuthProvider");
+  }
 
-    const { usuario, handleLogout } = useContext(AuthContext)
-    const token = usuario.token
+  const { usuario: usuarioLogado, handleLogout } = auth;
+  const token = usuarioLogado.token;
 
-    useEffect(() => {
-        if (token === '') {
-            ToastAlerta('Você precisa estar logado!', 'info')
-            navigate('/')
-        }
-    }, [token])
-
-    useEffect(() => {
-        buscarUsuario()
-    }, [usuario.length])
-
-    async function buscarUsuario() {
-        try {
-            setIsLoading(true)
-
-            await buscar('/usuario', setUsuario, {
-                headers: { Authorization: token }
-            })
-        } catch (error: any) {
-            if (error.toString().includes('401')) {
-                handleLogout()
-            }
-        } finally {
-            setIsLoading(false)
-        }
+  useEffect(() => {
+    if (token === "") {
+      ToastAlerta("Você precisa estar logado!", "info");
+      navigate("/");
     }
+  }, [token, navigate]);
+
+  useEffect(() => {
+    buscarUsuario();
+  }, []);
+
+  async function buscarUsuario() {
+    try {
+      setIsLoading(true);
+
+      await buscar("/usuario", setUsuarios, {
+        headers: { Authorization: token },
+      });
+    } catch (error: any) {
+      if (error.toString().includes("401")) {
+        handleLogout();
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
-    <div>ListaUsuario</div>
-  )
+    <div>
+      <h2>Lista de Usuários</h2>
+      {isLoading ? (
+        <p>Carregando...</p>
+      ) : (
+        <ul>
+          {usuarios.map((user) => (
+            <li key={user.id}>{user.nome}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
 
-export default ListaUsuario
+export default ListaUsuario;
+
+function ToastAlerta(mensagem: string, tipo: string) {
+  switch (tipo) {
+    case "info":
+      toast.info(mensagem);
+      break;
+    case "error":
+      toast.error(mensagem);
+      break;
+    case "success":
+      toast.success(mensagem);
+      break;
+    default:
+      toast(mensagem);
+  }
+}
