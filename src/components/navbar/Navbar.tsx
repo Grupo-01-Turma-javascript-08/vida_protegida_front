@@ -9,9 +9,7 @@ function Navbar() {
         </Link>
 
         <div className="flex space-x-6 text-[#334155]">
-          <Link
-            to="/"
-            className="font-semibold hover:text-[#0ea5e9] transition-colors"
+          <Link to="/cadastro" className="font-semibold hover:text-[#0ea5e9] transition-colors"
           >
             Cadastro
           </Link>

@@ -68,6 +68,7 @@ export const HomePage: React.FC = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
                         <button
                             onClick={() => navigate('/cadastro')}
                             className="cursor-pointer bg-[#38bdf8] hover:bg-[#0ea5e9] text-white font-semibold px-8 py-3 rounded-full transition-colors"
@@ -147,7 +148,7 @@ export const HomePage: React.FC = () => {
                 </p>
                 <button
                     onClick={() => navigate('/cadastro')}
-                    className="bg-white text-[#38bdf8] hover:bg-gray-100 font-semibold px-8 py-3 rounded-full"
+                    className="cursor-pointer bg-white text-[#38bdf8] hover:bg-gray-100 font-semibold px-8 py-3 rounded-full"
                 >
                     Começar Agora
                 </button>

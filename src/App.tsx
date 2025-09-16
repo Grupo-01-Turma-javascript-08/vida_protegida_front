@@ -15,11 +15,10 @@ function App() {
 				<Navbar />
 				<div className="min-h-[80vh]">
 					<Routes>
-						<Route path="/cadastro" element={<Cadastro setCurrentPage={() => {}} />}/>
-						<Route path="/" element={<Cadastro setCurrentPage={() => {}} />} />
-						<Route path="/cadastro" element={<Cadastro setCurrentPage={() => {}} />} />
+						<Route path="/" element={<HomePage />} />
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/sobre" element={<SobrePage />} />
+						<Route path="/cadastro" element={<Cadastro setCurrentPage={() => {}} />} />
 					</Routes>
 				</div>
 				<Footer />
