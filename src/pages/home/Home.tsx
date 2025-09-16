@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Heart, Users, TrendingUp, Star, Award } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const HomePage: React.FC = () => {
     const features = [
@@ -62,9 +63,11 @@ export const HomePage: React.FC = () => {
                         Planos flexíveis, coberturas amplas e o melhor atendimento do mercado.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-[#38bdf8] hover:bg-[#0ea5e9] text-white font-semibold px-8 py-3 rounded-full transition-colors">
-                            Começar Agora
-                        </button>
+                        <Link to="/cadastro">
+                            <button className="bg-[#38bdf8] hover:bg-[#0ea5e9] text-white font-semibold px-8 py-3 rounded-full transition-colors">
+                                Começar Agora
+                            </button>
+                        </Link>
                         <button className="border border-[#38bdf8] text-[#38bdf8] hover:bg-[#38bdf8] hover:text-white font-semibold px-8 py-3 rounded-full transition-colors">
                             Fazer Login
                         </button>
