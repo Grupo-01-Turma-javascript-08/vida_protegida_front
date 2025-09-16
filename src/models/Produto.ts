@@ -8,8 +8,8 @@ export default interface Produto {
     preco: number;
     criadoEm: Date;
     atualizadoEm: Date;
-    categoria?: Categoria[];
-    usuario?: Usuario;
+    categoria?: Categoria;
+    usuario?: Usuario[];
 }
 
 
