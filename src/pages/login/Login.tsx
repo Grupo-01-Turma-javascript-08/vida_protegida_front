@@ -1,13 +1,17 @@
 import { Eye, EyeOff, Shield } from "lucide-react";
-import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import type UsuarioLogin from "../../models/UsuarioLogin";
  
  
-function Login() {
+interface LoginPageProps {
+  setCurrentPage: (page: string) => void;
+}
+
+const Login: React.FC<LoginPageProps> = ({ setCurrentPage }) => {
   const navigate = useNavigate();
-  const { usuario, handleLogin, isLoading } = useContext(AuthContext)
+  const { usuario, handleLogin, isLoading } = useAuth();
  
   const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>({} as UsuarioLogin);
   const [showPassword, setShowPassword] = useState(false);
@@ -90,7 +94,7 @@ function Login() {
           <p className="text-[#334155]/70">
             Não tem uma conta?{' '}
             <button
-              onClick={() => console.log("Trocar para página de registro")}
+              onClick={() => setCurrentPage('cadastro')}
               className="text-[#38bdf8] hover:underline"
             >
               Cadastre-se

@@ -1,7 +1,8 @@
 import { Shield, Eye } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../contexts/AuthContextOnly";
+import { useAuth } from "../../contexts/AuthContext";
 import { AlertCircle, EyeOff } from "lucide-react";
 
 
@@ -11,6 +12,7 @@ interface RegisterPageProps {
 }
 
 export const Cadastro: React.FC<RegisterPageProps> = ({ setCurrentPage }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -224,7 +226,8 @@ export const Cadastro: React.FC<RegisterPageProps> = ({ setCurrentPage }) => {
           <p className="text-[#334155]/70">
             Já tem uma conta?{' '}
             <button 
-              onClick={() => setCurrentPage('login')}
+              type="button"
+              onClick={() => navigate('/login')}
               className="cursor-pointer text-[#38bdf8] hover:underline"
             >
               Faça login

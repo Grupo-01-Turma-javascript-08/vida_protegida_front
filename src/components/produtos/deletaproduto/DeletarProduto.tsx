@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deletar } from "../../../services/Service";
-import { AuthContext } from "../../../contexts/AuthContextOnly";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 function DeletarProduto() {

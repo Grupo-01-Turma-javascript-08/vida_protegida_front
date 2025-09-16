@@ -5,7 +5,7 @@ import { ClipLoader } from "react-spinners";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { toast } from "react-toastify";
 import type Produto from "../../../models/Produto";
-import { AuthContext } from "../../../contexts/AuthContextOnly";
+import { AuthContext } from "../../../contexts/AuthContext";
 import type Categoria from "../../../models/Categoria";
 
 

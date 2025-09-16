@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import type Produto from "../../../models/Produto";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../../contexts/AuthContextOnly";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { useContext } from "react";
 
 interface CardProdutoProps {

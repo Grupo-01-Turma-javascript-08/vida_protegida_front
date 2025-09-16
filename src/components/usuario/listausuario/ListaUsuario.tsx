@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type Usuario from "../../../models/Usuario";
-import { AuthContext } from "../../../contexts/AuthContextOnly";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { toast } from "react-toastify";
 import { buscar } from "../../../services/Service";
 
@@ -55,7 +55,18 @@ function ListaUsuario() {
       ) : (
         <ul>
           {usuarios.map((user) => (
-            <li key={user.id}>{user.nome}</li>
+            <li key={user.id}>
+              {user.nome}
+              {user.tipo === 'admin' && (
+                <span style={{ color: '#38bdf8', fontWeight: 600, marginLeft: 8 }}>(Admin)</span>
+              )}
+              {/* Exemplo de ação restrita: só admin logado pode deletar */}
+              {usuarioLogado.tipo === 'admin' && (
+                <button style={{ marginLeft: 16, color: 'red' }} onClick={() => alert(`Deletar usuário ${user.nome}`)}>
+                  Deletar
+                </button>
+              )}
+            </li>
           ))}
         </ul>
       )}
