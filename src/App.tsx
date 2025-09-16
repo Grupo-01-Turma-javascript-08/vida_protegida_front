@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import DeletarProduto from "./components/produtos/deletaproduto/DeletarProduto";
 import FormProduto from "./components/produtos/formproduto/FormProduto";
 import ListarProduto from "./components/produtos/listaproduto/ListarProduto";
+import Login from "./pages/login/Login";
 
 
 
@@ -26,6 +27,7 @@ function App() {
 						<Route path="/cadastrarproduto" element={<FormProduto />} />
 						<Route path="/editarproduto/:id" element={<FormProduto />} />
 						<Route path="/deletarproduto/:id" element={<DeletarProduto />} />
+						<Route path="/login" element={<Login />} />
 					</Routes>
 				</div>
 				<Footer />
