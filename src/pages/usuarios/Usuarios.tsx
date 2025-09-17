@@ -285,10 +285,10 @@ const UsersPage: React.FC = () => {
       {showDelete.open && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: '#0005', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
           <div style={{ background: '#fff', borderRadius: 16, padding: 32, minWidth: 400 }}>
-            <DeletarUsuario usuario={showDelete.usuario} onClose={() => setShowDelete({ open: false })} onDelete={() => {
+            {/* <DeletarUsuario usuario={showDelete.usuario} onClose={() => setShowDelete({ open: false })} onDelete={() => {
               setUsuariosState(us => us.filter(u => u.id !== showDelete.usuario.id));
               setShowDelete({ open: false });
-            }} />
+            }} /> */}
           </div>
         </div>
       )}

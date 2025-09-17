@@ -1,5 +1,6 @@
 
-import { useEffect, useState, ChangeEvent, FormEvent, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";

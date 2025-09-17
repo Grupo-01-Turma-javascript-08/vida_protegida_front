@@ -3,12 +3,24 @@ import React, { useState } from 'react';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+interface UserRefProps {
+    id: number;
+    nome: string;
+    email: string;
+    telefone: string;
+    ativo: boolean;
+    funcao: string;
+    apolices: number;
+    dataCadastro: string;
+}
+
 interface FormUsuarioProps {
   onSubmit?: (name: string, email: string, password: string, birthDate?: string) => void;
   onClose?: () => void;
+  onSave?: (novoUsuario: UserRefProps) => void;
+ usuario?: UserRefProps;
 }
-
-const FormUsuario: React.FC<FormUsuarioProps> = ({ onSubmit, onClose }) => {
+const FormUsuario: React.FC<FormUsuarioProps> = ({ onSubmit, onClose, onSave }) => {
   const { register } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({
