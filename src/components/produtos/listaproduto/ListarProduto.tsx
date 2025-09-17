@@ -7,6 +7,7 @@ import type Produto from "../../../models/Produto";
 
 import { toast } from "react-toastify";
 import type Categoria from "../../../models/Categoria";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function ListarProduto() {
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const [categorias, setCategorias] = useState<Categoria[]>([]);
           onChange={(e) => setCategoria(e.target.value)}
         >
           {categorias.map((categoria) => (
-            <option key={categoria}>{categoria}</option>
+            <option key={categoria.id}>{categoria.nome}</option>
           ))}
         </select>
       </div>

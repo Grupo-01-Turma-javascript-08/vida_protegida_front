@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function Navbar() {
-  const { usuario } = useAuth();
+  const { usuario, handleLogout} = useAuth();
+  
+  const navigate = useNavigate();
+  function logout() {
+
+        handleLogout()
+        ToastAlerta('O Usuário foi desconectado com sucesso!')
+        navigate('/')
+    }
   return (
     <nav className="bg-white shadow-md p-4 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
@@ -11,9 +20,11 @@ function Navbar() {
         </Link>
 
         <div className="flex space-x-6 text-[#334155]">
-          <Link to="/cadastro" className="font-semibold hover:text-[#0ea5e9] transition-colors">
+          {!usuario?.token && (
+            <Link to="/cadastro" className="font-semibold hover:text-[#0ea5e9] transition-colors">
             Cadastro
           </Link>
+          )}
           <Link to="/home" className="font-semibold hover:text-[#0ea5e9] transition-colors">
             Home
           </Link>
@@ -31,6 +42,8 @@ function Navbar() {
               <Link to="/usuarios" className="font-semibold hover:text-[#0ea5e9] transition-colors">
                 Usuários
               </Link>
+              <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
+
             </>
           )}
         </div>

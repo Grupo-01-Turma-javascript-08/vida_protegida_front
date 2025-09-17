@@ -84,7 +84,7 @@ export const Cadastro: React.FC<RegisterPageProps> = ({ setCurrentPage }) => {
     
     if (success) {
       toast.success('Cadastro realizado com sucesso!');
-      setCurrentPage('home');
+      navigate('/login');
     } else {
       toast.error('Erro ao criar conta. Tente novamente.');
     }

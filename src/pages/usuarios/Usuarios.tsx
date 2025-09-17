@@ -6,8 +6,8 @@ import DeletarUsuario from '../../components/usuario/deletausuario/DeletarUsuari
 const usuarios = [
   {
     id: 1,
-    nome: 'João Silva',
-    email: 'joao@email.com',
+    nome: 'Daliane',
+    email: 'teste1@root.com',
     telefone: '(11) 99999-9999',
     ativo: true,
     funcao: 'Cliente',

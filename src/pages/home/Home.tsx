@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Shield, Heart, Users, TrendingUp, Star, Award } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export const HomePage: React.FC = () => {
     const navigate = useNavigate();
+      const { usuario } = useContext(AuthContext);
+    
 
     const features = [
         {
@@ -67,6 +70,7 @@ export const HomePage: React.FC = () => {
                         Planos flexíveis, coberturas amplas e o melhor atendimento do mercado.
                     </p>
 
+                    {!usuario.token && (
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
 
                         <button
@@ -75,14 +79,15 @@ export const HomePage: React.FC = () => {
                         >
                             Começar Agora
                         </button>
+                            
                         <button
                             onClick={() => navigate('/login')}
                             className="cursor-pointer border border-[#38bdf8] text-[#38bdf8] hover:bg-[#38bdf8] hover:text-white font-semibold px-8 py-3 rounded-full transition-colors"
                         >
                             Fazer Login
-                        </button>
-                    </div>
-                </div>
+                        </button> 
+                    </div> )}
+                </div> 
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
